@@ -60,26 +60,19 @@ const addEmployee = () => {
       },
     ])
     .then((response) => {
-      let firstname = response.first_name;
-      let lastname = response.last_name;
-      let roleid = response.role_id;
+      let firstName = response.first_name;
+      let lastName = response.last_name;
+      let roleId = response.role_id;
 
-      //insert values into employee table, make object of options
+      // insert values into employee table, make object of options
 
-      
-      // const insertEmployee= {
-      //   let employeeArray = [firstname, lastname, roleid];
-      //   db.query("insert into employeeArray[]", (err, data) => {
-      //     if (err) {
-      //       throw err;
-      //     }
-      //     console.table(data);
-      //   })
-      // }
+      const employeeArray = [firstName, lastName, roleId];
+      db.query(`insert into ${employeeArray}`, (err, data) => {
+        if (err) {
+          throw err;
+        }
+        console.table(data);
+      });
     });
-    const insertEmployee = () => {(
-      let employeeArray = [firstname, lastname, roleid];
-      db.query("insert into employee", (employeeArray)
-       ) }
 };
 questions();
