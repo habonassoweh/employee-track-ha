@@ -1,4 +1,5 @@
 // TODO: Include packages needed for this application
+const { response } = require("express");
 const inquirer = require("inquirer");
 const db = require("./server");
 
@@ -15,6 +16,10 @@ const questions = () => {
             name: "View all Employees",
             value: "view_employees",
           },
+          {
+            name: "Add Employee",
+            value: "add_employee",
+          },
         ],
       },
     ])
@@ -22,6 +27,8 @@ const questions = () => {
       console.log(response);
       if (response.Option === "view_employees") {
         viewEmployees();
+      } else {
+        addEmployee();
       }
     });
 
@@ -36,38 +43,43 @@ const questions = () => {
   };
 };
 
-const questionsAddEmployee = () => {
+const addEmployee = () => {
   inquirer
     .prompt([
       {
-        type: "list",
-        name: "Option",
-        message: "What would you like to do",
-        choices: [
-          {
-            name: "Add all Employees",
-            value: "add_employees",
-          },
-        ],
+        name: "first_name",
+        message: "What is employee's first name?",
+      },
+      {
+        name: "last_name",
+        message: "What is employee's last name?",
+      },
+      {
+        name: "role_id",
+        message: "what is employee's role id?",
       },
     ])
     .then((response) => {
-      console.log(response);
-      if (response.Option === "add_employees") {
-        addEmployees();
-      }
-    });
+      let firstname = response.first_name;
+      let lastname = response.last_name;
+      let roleid = response.role_id;
 
-  const addEmployees = () => {
-    console.log("test");
-    db.query("select * from employee", (err, data) => {
-      if (err) {
-        throw err;
-      }
-      console.table(data);
+      //insert values into employee table, make object of options
+
+      
+      // const insertEmployee= {
+      //   let employeeArray = [firstname, lastname, roleid];
+      //   db.query("insert into employeeArray[]", (err, data) => {
+      //     if (err) {
+      //       throw err;
+      //     }
+      //     console.table(data);
+      //   })
+      // }
     });
-  };
+    const insertEmployee = () => {(
+      let employeeArray = [firstname, lastname, roleid];
+      db.query("insert into employee", (employeeArray)
+       ) }
 };
-
 questions();
-questionsAddEmployee();
