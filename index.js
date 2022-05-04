@@ -67,12 +67,16 @@ const addEmployee = () => {
       // insert values into employee table, make object of options
 
       const employeeArray = [firstName, lastName, roleId];
-      db.query(`insert into ${employeeArray}`, (err, data) => {
-        if (err) {
-          throw err;
+      db.query(
+        `INSERT INTO employee(first_name, last_name, role_id) VALUES(?, ?, ?)`,
+        employeeArray,
+        (err, data) => {
+          if (err) {
+            throw err;
+          }
+          console.table(data);
         }
-        console.table(data);
-      });
+      );
     });
 };
 questions();
