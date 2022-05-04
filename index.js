@@ -36,4 +36,38 @@ const questions = () => {
   };
 };
 
+const questionsAddEmployee = () => {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "Option",
+        message: "What would you like to do",
+        choices: [
+          {
+            name: "Add all Employees",
+            value: "add_employees",
+          },
+        ],
+      },
+    ])
+    .then((response) => {
+      console.log(response);
+      if (response.Option === "add_employees") {
+        addEmployees();
+      }
+    });
+
+  const addEmployees = () => {
+    console.log("test");
+    db.query("select * from employee", (err, data) => {
+      if (err) {
+        throw err;
+      }
+      console.table(data);
+    });
+  };
+};
+
 questions();
+questionsAddEmployee();
