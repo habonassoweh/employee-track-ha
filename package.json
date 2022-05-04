@@ -20,6 +20,7 @@
   "homepage": "https://github.com/habonassoweh/employee-track-ha#readme",
   "dependencies": {
     "express": "^4.18.0",
+    "inquirer": "^8.2.4",
     "mysql2": "^2.3.3"
   },
   "devDependencies": {
